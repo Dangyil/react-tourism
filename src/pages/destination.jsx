@@ -52,8 +52,8 @@ const [active, setActive] = useState(0);
 
     return (
         <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:pl-15 lg:flex-row lg:gap-20 xl:pl-5 xl:gap-25 ">
-            <div className=" md:absolute top-25 md:left-35 space-x-2">
-                <span>01</span>
+            <div className="font-condensed md:absolute top-25 md:left-35 space-x-2">
+                <span className="text-gray-400">01</span>
                 <span>PICK YOUR DESTINATION</span>
             </div>
             <img src={destinations[active].image} className="size-40 lg:size-80"></img>    
@@ -71,15 +71,15 @@ const [active, setActive] = useState(0);
             </button>
             ))}
             </div>
-            <h1 className="text-6xl lg:text-8xl">{destinations[active].title}</h1>
-            <p className="w-full md:w-5/8">{destinations[active].description}</p>
+            <h1 className="font-bellefair text-6xl lg:text-8xl">{destinations[active].title}</h1>
+            <p className="font-barlow w-full md:w-5/8">{destinations[active].description}</p>
             <div className="flex flex-col gap-3">
             <hr className="w-full border-t border-gray-500 opacity-50" />
-                <div className="flex flex-col gap-3 md:flex-row">
+                <div className="font-condensed flex flex-col gap-3 md:flex-row">
                     <span>{destinations[active].avgdistance}</span>
                     <span>{destinations[active].avgdistancevalue}</span>
                 </div>
-                <div className="flex flex-col gap-3 md:flex-row">
+                <div className="font-condensed flex flex-col gap-3 md:flex-row">
                     <span>{destinations[active].esttraveltime}</span>
                     <span>{destinations[active].esttraveltimevalue}</span>
                 </div>

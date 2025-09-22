@@ -35,8 +35,8 @@ export default function Technology() {
 
   return (
     <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:flex-row-reverse lg:pl-25">
-        <div className="md:absolute top-25 md:left-30 space-x-2">
-          <span>03</span>
+        <div className="font-condensed md:absolute top-25 md:left-30 space-x-2">
+          <span className="text-gray-400">03</span>
           <span>SPACE LAUNCH 101</span>   
         </div>
         <picture className="w-screen h-70 lg:w-5/8 lg:h-100">
@@ -57,9 +57,9 @@ export default function Technology() {
             ))}
           </div>
           <div className="flex flex-col gap-5 justify-center text-center lg:items-start lg:pr-20 lg:text-left">
-            <h1 className="text-xl">THE TERMINOLOGY</h1>
-            <h1 className="text-2xl">{technologies[active].name}</h1>
-            <p>{technologies[active].description}</p>
+            <h1 className="font-bellefair text-xl">THE TERMINOLOGY</h1>
+            <h1 className="font-bellefair text-2xl">{technologies[active].name}</h1>
+            <p className="font-barlow">{technologies[active].description}</p>
           </div>
         </div>
     </div>

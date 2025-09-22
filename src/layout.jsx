@@ -1,4 +1,4 @@
-import { Outlet, Link, NavLink, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import logo from "./assets/shared/logo.svg";
@@ -84,25 +84,25 @@ const location = useLocation();
                 </div>
                 {/*Desktop Nav Menu*/}
                 <nav className="font-barlow w-9/10 lg:w-5/8">
-                <ul className="hidden md:flex md:w-full md:space-x-8 md:justify-center lg:space-x-12 backdrop-blur-2xl    p-4">
+                <ul className="hidden font-condensed md:flex md:w-full md:space-x-8 md:justify-center lg:space-x-12 backdrop-blur-2xl    p-4">
                     <li>
                     <NavLink to="/" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
-                        <span>00</span><span>Home</span>
+                        <span className="text-gray-400">00</span><span>Home</span>
                     </NavLink>
                     </li>
                     <li>
                     <NavLink to="/destination" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
-                        <span>01</span><span>Destination</span>
+                        <span className="text-gray-400">01</span><span>Destination</span>
                     </NavLink>
                     </li>
                     <li>
                     <NavLink to="/crew" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
-                        <span>02</span><span>Crew</span>
+                        <span className="text-gray-400">02</span><span>Crew</span>
                     </NavLink>
                     </li>
                     <li>
                     <NavLink to="/technology" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
-                        <span>03</span><span>Technology</span>
+                        <span className="text-gray-400">03</span><span>Technology</span>
                     </NavLink>
                     </li>
                 </ul>
@@ -111,22 +111,22 @@ const location = useLocation();
                 <ul onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
                     <li className="w-full">
                     <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
-                        <span>00</span><span>Home</span>
+                        <span className="text-gray-400">00</span><span>Home</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
                     <NavLink to="/destination" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
-                        <span>01</span><span>Destination</span>
+                        <span className="text-gray-400">01</span><span>Destination</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
                     <NavLink to="/crew" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
-                        <span>02</span><span>Crew</span>
+                        <span className="text-gray-400">02</span><span>Crew</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
                     <NavLink to="/technology" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
-                        <span>03</span><span>Technology</span>
+                        <span className="text-gray-400">03</span><span>Technology</span>
                     </NavLink>
                     </li>
                 </ul>

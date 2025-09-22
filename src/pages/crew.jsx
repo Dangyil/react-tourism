@@ -40,14 +40,14 @@ export default function Crew() {
 
     return (
         <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:pl-15 xl:pl-2 xl:gap-30 lg:flex-row">
-            <div className=" md:absolute top-25 md:left-30 space-x-2">
-                <span>02</span>
+            <div className="font-condensed md:absolute top-25 md:left-30 space-x-2">
+                <span className="text-gray-400">02</span>
                 <span>MEET YOUR CREW</span>   
             </div>
             <div className="flex flex-col justify-center items-center text-center lg:text-left gap-5 w-3/4 lg:w-1/2 xl:w-3/8 lg:items-start">
-                <h1 className="text-2xl">{crew[crewMember].title}</h1>
-                <h1 className="text-3xl">{crew[crewMember].Name}</h1>
-                <p>{crew[crewMember].bio}</p>
+                <h1 className="font-bellefair text-2xl">{crew[crewMember].title}</h1>
+                <h1 className="font-bellefair text-3xl">{crew[crewMember].Name}</h1>
+                <p className="font-barlow">{crew[crewMember].bio}</p>
                 <div className="flex space-x-5">
                     {crew.map((crew, index) => (
                         <button

@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <div className="h-full flex flex-col items-center justify-center gap-30 text-white lg:flex-row lg:gap-10">
             <div className="w-3/4 md:w-1/2 text-center space-y-10 md:space-y-6 lg:text-left lg:pr-30 xl:pr-50">
-                <h1 className="font-bellefair text-xl" >SO, YOU WANT TO TRAVEL TO</h1>
+                <h1 className="font-condensed text-xl" >SO, YOU WANT TO TRAVEL TO</h1>
                 <h1 className="font-bellefair text-8xl md:text-9xl">SPACE</h1>
                 <p className="font-barlow">Let’s face it; if you want to go to space, you might as well genuinely go to
                 outer space and not hover kind of on the edge of it. Well sit back, and relax
