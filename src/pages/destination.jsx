@@ -71,7 +71,7 @@ const [active, setActive] = useState(0);
             </button>
             ))}
             </div>
-            <h1 className="font-bellefair text-6xl lg:text-8xl">{destinations[active].title}</h1>
+            <h1 className="font-mono text-6xl lg:text-8xl">{destinations[active].title}</h1>
             <p className="font-barlow w-full md:w-5/8">{destinations[active].description}</p>
             <div className="flex flex-col gap-3">
             <hr className="w-full border-t border-gray-500 opacity-50" />
