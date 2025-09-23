@@ -86,22 +86,22 @@ const location = useLocation();
                 <nav className="font-barlow w-9/10 lg:w-5/8">
                 <ul className="hidden font-condensed md:flex md:w-full md:space-x-8 md:justify-center lg:space-x-12 backdrop-blur-2xl    p-4">
                     <li>
-                    <NavLink to="/" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2 hover:pb-4 hover:border-b-2 hover:border-gray-500")}>
                         <span className="text-gray-400">00</span><span>Home</span>
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/destination" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
+                    <NavLink to="/destination" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2 hover:pb-4 hover:border-b-2 hover:border-gray-500")}>
                         <span className="text-gray-400">01</span><span>Destination</span>
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/crew" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
+                    <NavLink to="/crew" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2 hover:pb-4 hover:border-b-2 hover:border-gray-500")}>
                         <span className="text-gray-400">02</span><span>Crew</span>
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/technology" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2")}>
+                    <NavLink to="/technology" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2 hover:pb-4 hover:border-b-2 hover:border-gray-500")}>
                         <span className="text-gray-400">03</span><span>Technology</span>
                     </NavLink>
                     </li>
@@ -110,22 +110,22 @@ const location = useLocation();
                 {menuOpen && (
                 <ul onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
                     <li className="w-full">
-                    <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
+                    <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2  hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">00</span><span>Home</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
-                    <NavLink to="/destination" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
+                    <NavLink to="/destination" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">01</span><span>Destination</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
-                    <NavLink to="/crew" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
+                    <NavLink to="/crew" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">02</span><span>Crew</span>
                     </NavLink>
                     </li>
                     <li className="w-full">
-                    <NavLink to="/technology" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2'}`}>
+                    <NavLink to="/technology" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">03</span><span>Technology</span>
                     </NavLink>
                     </li>
