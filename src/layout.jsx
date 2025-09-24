@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import logo from "./assets/shared/logo.svg";
 import hamburger from "./assets/shared/icon-hamburger.svg";
@@ -130,11 +130,13 @@ const item = {
                     </li>
                 </ul>
                 {/*Mobile Nav Menu*/}
+                <AnimatePresence>
                 {menuOpen && (
                 <motion.ul variants={container}
-                  initial="hidden"
-                  animate="show"
-                 onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
+                initial="hidden"
+                animate="show"                  
+                exit="exit"
+                onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40 z-50">
                     <motion.li variants={item} className="w-full">
                     <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2  hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">00</span><span>Home</span>
@@ -157,6 +159,7 @@ const item = {
                     </motion.li>
                 </motion.ul>
                 )}
+                </AnimatePresence>
                 </nav>
                 {/*Hamburger Icon*/}
                 <div onClick={() => setMenuOpen(!menuOpen)} className="md:hidden cursor-pointer z-50 mr-6">
