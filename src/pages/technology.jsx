@@ -58,10 +58,10 @@ export default function Technology() {
     <motion.div variants={container}
         initial="hidden"
         animate="show" className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:flex-row-reverse lg:pl-25">
-        <div className="font-condensed md:absolute top-25 md:left-30 space-x-2">
+        <motion.div variants={item} className="font-condensed md:absolute top-25 md:left-30 space-x-2">
           <span className="text-gray-400">03</span>
           <span>SPACE LAUNCH 101</span>   
-        </div>
+        </motion.div>
         <AnimatePresence mode="wait">
           <motion.picture
             key={technologies[active].portrait + technologies[active].landscape}
