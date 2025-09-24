@@ -163,7 +163,7 @@ const item = {
                 </nav>
                 {/*Hamburger Icon*/}
                 <div onClick={() => setMenuOpen(!menuOpen)} className="md:hidden cursor-pointer z-50 mr-6">
-                {menuOpen ? <img src={close} alt="Close Menu" className="size-5" /> : <img src={hamburger} alt="Open Menu" className="size-5" />}
+                {menuOpen ? <img src={close} alt="Close Menu" className="w-5" /> : <img src={hamburger} alt="Open Menu" className="w-5" />}
                 </div>
             </header>
         {/*Main content*/}
