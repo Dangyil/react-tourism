@@ -1,5 +1,6 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 import logo from "./assets/shared/logo.svg";
 import hamburger from "./assets/shared/icon-hamburger.svg";
@@ -73,7 +74,9 @@ const location = useLocation();
   };
 
     return (
-        <div className="w-screen h-screen bg-cover bg-center bg-no-repeat text-white md:pt-4"
+        <motion.div initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }} className="w-screen h-screen bg-cover bg-center bg-no-repeat text-white md:pt-4"
         style={{ backgroundImage: getBackground() }}>
             {/*Header*/}
             <header className="w-screen h-1/12 flex justify-between items-center pl-6">
@@ -141,6 +144,6 @@ const location = useLocation();
         <main className="w-screen h-11/12">
             <Outlet />
         </main>
-    </div>
+    </motion.div>
   );
 }

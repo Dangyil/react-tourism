@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import commander from "../assets/crew/image-douglas-hurley.png"
 import specialist from "../assets/crew/image-mark-shuttleworth.png"
 import pilot from "../assets/crew/image-victor-glover.png"
@@ -35,33 +36,103 @@ const crew = [
         image:engineer
     }
 ]
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+
+const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7 },
+    },
+};
+
 export default function Crew() {
     const [crewMember, setCrewMember] = useState(0);
 
     return (
-        <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:pl-15 xl:pl-2 xl:gap-30 lg:flex-row">
-            <div className="font-condensed md:absolute top-25 md:left-30 space-x-2">
+        <motion.div variants={container}
+            initial="hidden"
+            animate="show" className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:pl-15 xl:pl-2 xl:gap-30 lg:flex-row">
+            <motion.div variants={item} className="font-condensed md:absolute top-25 md:left-30 space-x-2">
                 <span className="text-gray-400">02</span>
                 <span>MEET YOUR CREW</span>   
-            </div>
-            <div className="flex flex-col justify-center items-center text-center lg:text-left gap-5 w-3/4 lg:w-1/2 xl:w-3/8 lg:items-start">
-                <h1 className="font-bellefair text-2xl">{crew[crewMember].title}</h1>
-                <h1 className="font-bellefair text-3xl">{crew[crewMember].Name}</h1>
-                <p className="font-barlow">{crew[crewMember].bio}</p>
+            </motion.div>
+            <motion.div variants={container} className="flex flex-col justify-center items-center text-center lg:text-left gap-5 w-3/4 lg:w-1/2 xl:w-3/8 lg:items-start">
+                <AnimatePresence mode="wait">
+                    <motion.h1
+                        variants={item}
+                        key={crew[crewMember].title}
+                        className="font-bellefair text-2xl"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        {crew[crewMember].title}
+                    </motion.h1>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                    <motion.h1
+                        variants={item}
+                        key={crew[crewMember].Name}
+                        className="font-bellefair text-3xl"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        {crew[crewMember].Name}
+                    </motion.h1>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                    <motion.p
+                        variants={item}
+                        key={crew[crewMember].bio}
+                        className="font-barlow"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        {crew[crewMember].bio}
+                    </motion.p>
+                </AnimatePresence>
                 <div className="flex space-x-5">
                     {crew.map((crew, index) => (
                         <button
-                            key={crew.member}
+                            key={crew.member + index}
                             onClick={() => setCrewMember(index)}
                             className={`p-2 rounded-full ${index === crewMember ? 'bg-white' : 'bg-blue-200'} hover:bg-gray-100`}>
                             {crew.member}
                         </button>
                     ))}
                 </div>
-            </div>
-            <div className="lg:w-3/8">            
-                <img src={crew[crewMember].image} className="h-70 w-50 md:w-70 md:h-90 lg:w-100 lg:h-110"></img>
-            </div>    
-        </div>
+            </motion.div>
+            <AnimatePresence mode="wait">
+                <motion.div className="lg:w-3/8"
+                    key={crew[crewMember].image}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.7 }}
+                >
+                    <motion.img
+                        src={crew[crewMember].image}
+                        className="h-70 w-50 md:w-70 md:h-90 lg:w-100 lg:h-110"
+                    />
+                </motion.div>
+            </AnimatePresence>
+        </motion.div>
     )
 }

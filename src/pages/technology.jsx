@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import launchLandscape from "../assets/technology/image-launch-vehicle-landscape.jpg"
 import launchPortrait from "../assets/technology/image-launch-vehicle-portrait.jpg"
 import spaceportLandscape from "../assets/technology/image-spaceport-landscape.jpg"
@@ -30,21 +31,54 @@ const technologies = [
    }
 ]
 
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+
+const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7 },
+    },
+};
+
 export default function Technology() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:flex-row-reverse lg:pl-25">
+    <motion.div variants={container}
+        initial="hidden"
+        animate="show" className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:gap-5 lg:flex-row-reverse lg:pl-25">
         <div className="font-condensed md:absolute top-25 md:left-30 space-x-2">
           <span className="text-gray-400">03</span>
           <span>SPACE LAUNCH 101</span>   
         </div>
-        <picture className="w-screen h-70 lg:w-5/8 lg:h-100">
-          <source media="(min-width: 1024px)" srcSet={technologies[active].portrait} />
-          <img src={technologies[active].landscape} className="w-full h-full" />
-        </picture>
-        <div className="flex flex-col lg:flex-row gap-5 justify-center items-center w-3/4 lg:w-1/2 lg:items-start">
-          <div className="flex gap-5 lg:flex-col">
+        <AnimatePresence mode="wait">
+          <motion.picture
+            key={technologies[active].portrait + technologies[active].landscape}
+            className="w-screen h-70 lg:w-5/8 lg:h-100"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{ duration: 0.7 }}
+          >
+            <source media="(min-width: 1024px)" srcSet={technologies[active].portrait} />
+            <img src={technologies[active].landscape} className="w-full h-full" />
+          </motion.picture>
+        </AnimatePresence>
+        <motion.div variants={container}
+        initial="hidden"
+        animate="show" className="flex flex-col lg:flex-row gap-5 justify-center items-center w-3/4 lg:w-1/2 lg:items-start">
+          <motion.div variants={item} className="flex gap-5 lg:flex-col">
             {technologies.map((tech, index) => (
               <button
                 key={tech.id}
@@ -55,13 +89,39 @@ export default function Technology() {
                 {tech.id}
               </button>
             ))}
-          </div>
-          <div className="flex flex-col gap-5 justify-center text-center lg:items-start lg:pr-20 lg:text-left">
-            <h1 className="font-bellefair text-xl">THE TERMINOLOGY</h1>
-            <h1 className="font-bellefair text-2xl">{technologies[active].name}</h1>
-            <p className="font-barlow">{technologies[active].description}</p>
-          </div>
-        </div>
-    </div>
+          </motion.div>
+          <motion.div variants={container}
+            initial="hidden"
+            animate="show" className="flex flex-col gap-5 justify-center text-center lg:items-start lg:pr-20 lg:text-left">
+            <motion.h1 variants={item} className="font-bellefair text-xl">THE TERMINOLOGY</motion.h1>
+            <AnimatePresence mode="wait">
+              <motion.h1
+                variants={item}
+                key={technologies[active].name}
+                className="font-bellefair text-2xl"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.7 }}
+              >
+                {technologies[active].name}
+              </motion.h1>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.p
+                variants={item}
+                key={technologies[active].description}
+                className="font-barlow"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.7 }}
+              >
+                {technologies[active].description}
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
+        </motion.div>
+    </motion.div>
   )
 }

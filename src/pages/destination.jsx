@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import moon from "../assets/destination/image-moon.png";
 import mars from "../assets/destination/image-mars.png";
 import europa from "../assets/destination/image-europa.png";
@@ -47,44 +48,132 @@ const destinations = [
     }
 ]
 
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+
+const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7 },
+    },
+};
+
 export default function Destination() {
 const [active, setActive] = useState(0);
 
     return (
-        <div className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:pl-15 lg:flex-row lg:gap-20 xl:pl-5 xl:gap-25 ">
-            <div className="font-condensed md:absolute top-25 md:left-35 space-x-2">
+        <motion.div variants={container}
+            initial="hidden"
+            animate="show"
+            className="h-full flex flex-col pt-10 md:justify-center items-center gap-10 lg:pl-15 lg:flex-row lg:gap-20 xl:pl-5 xl:gap-25 ">
+            <motion.div variants={item} className="font-condensed md:absolute top-25 md:left-35 space-x-2">
                 <span className="text-gray-400">01</span>
                 <span>PICK YOUR DESTINATION</span>
-            </div>
-            <img src={destinations[active].image} className="size-40 lg:size-80"></img>    
-            <div className="flex flex-col w-3/4 lg:w-1/2 justify-center items-center text-center lg:text-left gap-5 lg:items-start lg:pl-10 xl:pl-30">
-            <div className="flex justify-center lg:justify-start space-x-6 uppercase tracking-widest text-sm mb-6">
-            {destinations.map((dest, index) => (
-            <button
-              key={dest.name}
-              onClick={() => setActive(index)}
-              className={`pb-2 border-b-2 ${
-                active === index
-                  ? "border-white text-white"
-                  : "border-transparent text-gray-400 hover:text-white hover:border-gray-500"}`}>
-              {dest.name}
-            </button>
-            ))}
-            </div>
-            <h1 className="font-mono text-6xl lg:text-8xl">{destinations[active].title}</h1>
-            <p className="font-barlow w-full md:w-5/8">{destinations[active].description}</p>
-            <div className="flex flex-col gap-3">
-            <hr className="w-full border-t border-gray-500 opacity-50" />
-                <div className="font-condensed flex flex-col gap-3 md:flex-row">
-                    <span>{destinations[active].avgdistance}</span>
-                    <span>{destinations[active].avgdistancevalue}</span>
-                </div>
-                <div className="font-condensed flex flex-col gap-3 md:flex-row">
-                    <span>{destinations[active].esttraveltime}</span>
-                    <span>{destinations[active].esttraveltimevalue}</span>
-                </div>
-            </div>
-            </div>
-        </div>
+            </motion.div>
+            <AnimatePresence mode="wait">
+                <motion.img
+                    key={destinations[active].image}
+                    src={destinations[active].image}
+                    className="size-40 lg:size-80"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.7 }}
+                />
+            </AnimatePresence>
+            <motion.div variants={container}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col w-3/4 lg:w-1/2 justify-center items-center text-center lg:text-left gap-5 lg:items-start lg:pl-10 xl:pl-30">
+                <motion.div variants={item} className="flex justify-center lg:justify-start space-x-6 uppercase tracking-widest text-sm mb-6">
+                    {destinations.map((dest, index) => (
+                        <motion.button
+                            key={dest.name}
+                            onClick={() => setActive(index)}
+                            className={`pb-2 border-b-2 ${
+                                active === index
+                                    ? "border-white text-white"
+                                    : "border-transparent text-gray-400 hover:text-white hover:border-gray-500"}`}
+                            layout
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <AnimatePresence mode="wait">
+                                {active === index ? (
+                                    <motion.span
+                                        key={dest.name}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {dest.name}
+                                    </motion.span>
+                                ) : (
+                                    <span>{dest.name}</span>
+                                )}
+                            </AnimatePresence>
+                        </motion.button>
+                    ))}
+                </motion.div>
+                <AnimatePresence mode="wait">
+                    <motion.h1
+                        variants={item}
+                        key={destinations[active].title}
+                        className="font-mono text-6xl lg:text-8xl"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        {destinations[active].title}
+                    </motion.h1>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                    <motion.p
+                        variants={item}
+                        key={destinations[active].description}
+                        className="font-barlow w-full md:w-5/8"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        {destinations[active].description}
+                    </motion.p>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        variants={item}
+                        key={destinations[active].avgdistancevalue + destinations[active].esttraveltimevalue}
+                        className="flex flex-col gap-3"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        <hr className="w-full border-t border-gray-500 opacity-50" />
+                        <motion.div className="font-condensed flex flex-col gap-3 md:flex-row">
+                            <span>{destinations[active].avgdistance}</span>
+                            <span>{destinations[active].avgdistancevalue}</span>
+                        </motion.div>
+                        <motion.div className="font-condensed flex flex-col gap-3 md:flex-row">
+                            <span>{destinations[active].esttraveltime}</span>
+                            <span>{destinations[active].esttraveltimevalue}</span>
+                        </motion.div>
+                    </motion.div>
+                </AnimatePresence>
+            </motion.div>
+        </motion.div>
     )
 }
