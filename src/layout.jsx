@@ -73,10 +73,30 @@ const location = useLocation();
     return `url(${mobile})`;
   };
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+        },
+    },
+};
+
+
+const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7 },
+    },
+};
+
     return (
-        <motion.div initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }} className="w-screen h-screen bg-cover bg-center bg-no-repeat text-white md:pt-4"
+        <motion.div variants={container}
+        initial="hidden"
+        animate="show" className="w-screen h-screen bg-cover bg-center bg-no-repeat text-white md:pt-4"
         style={{ backgroundImage: getBackground() }}>
             {/*Header*/}
             <header className="w-screen h-1/12 flex justify-between items-center pl-6">
@@ -111,28 +131,31 @@ const location = useLocation();
                 </ul>
                 {/*Mobile Nav Menu*/}
                 {menuOpen && (
-                <ul onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
-                    <li className="w-full">
+                <motion.ul variants={container}
+                  initial="hidden"
+                  animate="show"
+                 onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
+                    <motion.li variants={item} className="w-full">
                     <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2  hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">00</span><span>Home</span>
                     </NavLink>
-                    </li>
-                    <li className="w-full">
+                    </motion.li>
+                    <motion.li variants={item} className="w-full">
                     <NavLink to="/destination" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">01</span><span>Destination</span>
                     </NavLink>
-                    </li>
-                    <li className="w-full">
+                    </motion.li>
+                    <motion.li variants={item} className="w-full">
                     <NavLink to="/crew" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">02</span><span>Crew</span>
                     </NavLink>
-                    </li>
-                    <li className="w-full">
+                    </motion.li>
+                    <motion.li variants={item} className="w-full">
                     <NavLink to="/technology" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2 hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">03</span><span>Technology</span>
                     </NavLink>
-                    </li>
-                </ul>
+                    </motion.li>
+                </motion.ul>
                 )}
                 </nav>
                 {/*Hamburger Icon*/}
