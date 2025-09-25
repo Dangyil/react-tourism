@@ -106,8 +106,8 @@ const item = {
                 <hr className="hidden md:block border-t border-gray-500 opacity-50" />
                 </div>
                 {/*Desktop Nav Menu*/}
-                <nav className="font-barlow w-9/10 lg:w-5/8">
-                <ul className="hidden font-condensed md:flex md:w-full md:space-x-8 md:justify-center lg:space-x-12 backdrop-blur-2xl    p-4">
+                <nav className="w-9/10 lg:w-5/8">
+                <ul className="hidden font-condensed md:flex md:w-full md:space-x-8 md:justify-center lg:space-x-12 backdrop-blur-2xl p-4">
                     <li>
                     <NavLink to="/" className={({ isActive }) => (isActive ? "font-bold pb-4 border-b-2 space-x-2" : "space-x-2 hover:pb-4 hover:border-b-2 hover:border-gray-500")}>
                         <span className="text-gray-400">00</span><span>Home</span>
@@ -133,10 +133,9 @@ const item = {
                 <AnimatePresence>
                 {menuOpen && (
                 <motion.ul variants={container}
-                initial="hidden"
-                animate="show"                  
-                exit="exit"
-                onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40 z-50">
+                  exit={{ x: '100%' }}
+                  transition={{ type: 'tween', duration: 0.5 }}
+                onClick={() => setMenuOpen(false)} className="md:hidden space-y-6 absolute top-0 right-0 w-3/4 h-screen text-xl backdrop-blur-2xl pl-6 pt-40">
                     <motion.li variants={item} className="w-full">
                     <NavLink to="/" className={({ isActive }) => `block ${isActive ? 'border-r-4 space-x-2' : 'space-x-2  hover:border-r-4 hover:border-gray-500'}`}>
                         <span className="text-gray-400">00</span><span>Home</span>
